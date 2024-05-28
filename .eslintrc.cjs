@@ -66,6 +66,9 @@ module.exports = {
           },
         },
       },
+      rules: {
+        "@typescript-eslint/triple-slash-reference": "off",
+      },
       extends: [
         "plugin:@typescript-eslint/recommended",
         "plugin:import/recommended",
