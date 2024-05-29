@@ -68,6 +68,11 @@ module.exports = {
       },
       rules: {
         "@typescript-eslint/triple-slash-reference": "off",
+        "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { argsIgnorePattern: "^_" },
+        ],
       },
       extends: [
         "plugin:@typescript-eslint/recommended",

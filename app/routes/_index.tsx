@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { MetaFunction } from "@remix-run/node";
-import { PostsTable } from "~/util/db";
+import { client } from "api/client";
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,7 +20,7 @@ export default function Index() {
 }
 
 export const loader = async () => {
-  const data = await PostsTable.query("POST", { limit: 10, reverse: true });
+  const data = await client.allPosts.query();
 
   return json(data);
 };

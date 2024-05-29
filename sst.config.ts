@@ -26,6 +26,17 @@ export default $config({
       primaryIndex: { hashKey: "PK", rangeKey: "SK" },
     });
 
-    new sst.aws.Remix("MyWeb", { link: [bucket, table] });
+    const trpc = new sst.aws.Function("Trpc", {
+      url: true,
+      handler: "api/index.handler",
+      link: [table],
+    });
+
+    const site = new sst.aws.Remix("MyWeb", { link: [bucket, trpc] });
+
+    return {
+      api: trpc.url,
+      client: site.url,
+    };
   },
 });
