@@ -1,36 +1,14 @@
-# Welcome to Remix + Vite!
+# README
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/guides/vite) for details on supported features.
+## Architecture
 
-## Development
-
-Run the Vite dev server:
-
-```shellscript
-npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
+- SST to bootstrap and maintain infrastructure
+  - Cloudfront
+  - API Gateway
+  - S3
+  - DynamoDB
+- Remix to handle the UI layer frontend and backend
+  - Remix uses React to create the frontend UI
+  - Frontend UI makes requests to backend handled by Remix's server side application
+  - Server side application connects to a tRPC API
+  - tRPC API connects to DynamoDB
