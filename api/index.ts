@@ -6,6 +6,7 @@ import {
 } from "@trpc/server/adapters/aws-lambda";
 import { initTRPC } from "@trpc/server";
 import { allPosts } from "./query";
+import { addPost } from "./mutation";
 
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
@@ -18,8 +19,16 @@ export const router = t.router({
     }),
   allPosts: publicProcedure.query(async () => {
     const posts = await allPosts();
-    return posts.Items;
+    return posts;
   }),
+  addPost: publicProcedure
+    .input(
+      z.object({ title: z.string(), caption: z.string(), photoUrl: z.string() })
+    )
+    .mutation(async ({ input }) => {
+      const response = await addPost(input);
+      return response;
+    }),
 });
 
 export type Router = typeof router;

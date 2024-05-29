@@ -22,8 +22,13 @@ export default $config({
       fields: {
         PK: "string",
         SK: "string",
+        CreatedAt: "string",
+        GSI1PK: "string",
       },
       primaryIndex: { hashKey: "PK", rangeKey: "SK" },
+      globalIndexes: {
+        GSI1: { hashKey: "GSI1PK", rangeKey: "CreatedAt" },
+      },
     });
 
     const trpc = new sst.aws.Function("Trpc", {
