@@ -18,7 +18,7 @@ export default $config({
       public: true,
     });
 
-    const table = new sst.aws.Dynamo("PostTable", {
+    const table = new sst.aws.Dynamo("Post", {
       fields: {
         PK: "string",
         SK: "string",

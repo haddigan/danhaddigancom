@@ -7,7 +7,7 @@ declare module "sst" {
       name: string
       type: "sst.aws.Bucket"
     }
-    PostTable: {
+    Post: {
       name: string
       type: "sst.aws.Dynamo"
     }

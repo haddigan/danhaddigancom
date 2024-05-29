@@ -1,9 +1,7 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { MetaFunction } from "@remix-run/node";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { Resource } from "sst/resource";
+import { PostsTable } from "~/util/db";
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,19 +20,7 @@ export default function Index() {
 }
 
 export const loader = async () => {
-  const client = DynamoDBDocumentClient.from(new DynamoDBClient({}));
-
-  const data = await client.send(
-    new QueryCommand({
-      TableName: Resource.PostTable.name,
-      KeyConditionExpression: "PK = :pk",
-      ExpressionAttributeValues: {
-        ":pk": "POST",
-      },
-      ScanIndexForward: false,
-      Limit: 10,
-    })
-  );
+  const data = await PostsTable.query("POST", { limit: 10, reverse: true });
 
   return json(data);
 };
