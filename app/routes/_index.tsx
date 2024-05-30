@@ -9,8 +9,11 @@ import { client } from "api/client";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "DanHaddigan.com" },
+    {
+      name: "description",
+      content: "Well, you made it this far; you may as well come inside.",
+    },
   ];
 };
 
@@ -29,7 +32,13 @@ export default function Index() {
         </div>
         <button type="submit">Submit</button>
       </fetcher.Form>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      {posts?.Items?.map((post) => (
+        <div key={post.id}>
+          <h2>{post.title}</h2>
+          <img src={post.imageUrl} alt={post.caption} />
+          <p>{post.caption}</p>
+        </div>
+      ))}
     </div>
   );
 }
