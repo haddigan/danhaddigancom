@@ -3,6 +3,10 @@
 import "sst"
 declare module "sst" {
   export interface Resource {
+    Email: {
+      sender: string
+      type: "sst.aws.Email"
+    }
     ImageBucket: {
       name: string
       type: "sst.aws.Bucket"

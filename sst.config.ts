@@ -37,7 +37,11 @@ export default $config({
       link: [table],
     });
 
-    const site = new sst.aws.Remix("MyWeb", { link: [bucket, trpc] });
+    const email = new sst.aws.Email("Email", {
+      sender: "auth@haddigan.email",
+    });
+
+    const site = new sst.aws.Remix("MyWeb", { link: [bucket, trpc, email] });
 
     return {
       api: trpc.url,
