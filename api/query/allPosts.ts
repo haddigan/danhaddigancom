@@ -1,4 +1,4 @@
-import { PostsTable } from "../db";
+import { PostsTable } from "db";
 export default async function () {
   return PostsTable.query("POST", {
     index: "GSI1",

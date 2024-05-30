@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { Post } from "api/db";
+import { Post } from "db";
 
 export interface PostUserData {
   title: string;
