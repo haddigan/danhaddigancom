@@ -12,18 +12,13 @@ const t = initTRPC.create();
 const publicProcedure = t.procedure;
 
 export const router = t.router({
-  greet: publicProcedure
-    .input(z.object({ name: z.string() }))
-    .query(({ input }) => {
-      return `Hello ${input.name}!`;
-    }),
   allPosts: publicProcedure.query(async () => {
     const posts = await allPosts();
     return posts;
   }),
   addPost: publicProcedure
     .input(
-      z.object({ title: z.string(), caption: z.string(), photoUrl: z.string() })
+      z.object({ title: z.string(), caption: z.string(), imageUrl: z.string() })
     )
     .mutation(async ({ input }) => {
       const response = await addPost(input);

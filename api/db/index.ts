@@ -24,8 +24,8 @@ export const Post = new Entity({
     PostID: { type: "string", alias: "id" },
     Title: { type: "string", alias: "title" },
     Caption: { type: "string", alias: "caption" },
-    PhotoURL: { type: "string", alias: "photoUrl" },
-    CreatedAt: { type: "string", alias: "createdAt" },
+    ImageURL: { type: "string", alias: "imageUrl" },
+    CreatedAt: { type: "string", alias: "createdAt", hidden: true },
   },
   table: PostsTable,
 } as const);

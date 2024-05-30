@@ -4,9 +4,9 @@ import { Post } from "api/db";
 export interface PostUserData {
   title: string;
   caption: string;
-  photoUrl: string;
+  imageUrl: string;
 }
-export default function addPost({ title, caption, photoUrl }: PostUserData) {
+export default function addPost({ title, caption, imageUrl }: PostUserData) {
   const id = nanoid(9);
   const post = {
     PK: `POST#${id}`,
@@ -16,7 +16,7 @@ export default function addPost({ title, caption, photoUrl }: PostUserData) {
     id,
     title,
     caption,
-    photoUrl,
+    imageUrl,
   };
 
   return Post.put(post);
