@@ -15,6 +15,16 @@ export const PostsTable = new Table({
   DocumentClient,
 });
 
+export const User = new Entity({
+  name: "User",
+  attributes: {
+    PK: { partitionKey: true, hidden: true },
+    SK: { sortKey: true, hidden: true },
+    Email: { type: "string", alias: "email" },
+    ID: { type: "string", alias: "id" },
+  },
+} as const);
+
 export const Post = new Entity({
   name: "Post",
   attributes: {
