@@ -18,7 +18,6 @@ export const sendEmail: SendEmail = async ({
   subject,
   body,
 }) => {
-  console.log("sending");
   await client.send(
     new SendEmailCommand({
       FromEmailAddress: Resource.Email.sender,

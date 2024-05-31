@@ -17,7 +17,7 @@ export default function Account() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <h1>{user && `Welcome ${user.email}`}</h1>
-      <Form action="/logout" method="POST">
+      <Form action="/auth/logout" method="POST">
         <button>Log out</button>
       </Form>
     </div>

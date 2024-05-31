@@ -14,6 +14,7 @@ export const authenticator = new Authenticator<User>(sessionStorage);
 authenticator.use(
   new TOTPStrategy(
     {
+      magicLinkPath: "/auth/magic-link",
       secret: process.env.ENCRYPTION_SECRET || "NOT_A_STRONG_SECRET",
       sendTOTP: async ({ email, magicLink }) => {
         if (email === process.env.ADMIN_EMAIL) {

@@ -12,7 +12,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get("cookie"));
   const authEmail = session.get("auth:email");
   const authError = session.get(authenticator.sessionErrorKey);
-  if (!authEmail) return redirect("/login");
+  if (!authEmail) return redirect("/auth/login");
 
   // Commit session to clear any `flash` error message.
   return json(
