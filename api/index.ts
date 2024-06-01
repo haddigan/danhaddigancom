@@ -5,8 +5,8 @@ import {
   CreateAWSLambdaContextOptions,
 } from "@trpc/server/adapters/aws-lambda";
 import { initTRPC } from "@trpc/server";
-import { allPosts } from "./query";
-import { addPost } from "./mutation";
+import { allPosts, postById } from "./query";
+import { addPost, deletePost } from "./mutation";
 
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
@@ -20,10 +20,13 @@ export const router = t.router({
     .input(
       z.object({ title: z.string(), caption: z.string(), imageUrl: z.string() })
     )
-    .mutation(async ({ input }) => {
-      const response = await addPost(input);
-      return response;
-    }),
+    .mutation(async ({ input }) => await addPost(input)),
+  deletePost: publicProcedure
+    .input(z.string())
+    .mutation(async ({ input }) => await deletePost(input)),
+  postById: publicProcedure
+    .input(z.string())
+    .query(async ({ input }) => await postById(input)),
 });
 
 export type Router = typeof router;

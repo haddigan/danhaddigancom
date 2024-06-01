@@ -3,7 +3,7 @@ import {
   type ActionFunctionArgs,
   type MetaFunction,
 } from "@remix-run/node";
-import { useLoaderData, useFetcher } from "@remix-run/react";
+import { useLoaderData, useFetcher, Link } from "@remix-run/react";
 import { getUploadUrl, uploadToS3 } from "util/s3Utils";
 import { client } from "api/client";
 
@@ -34,7 +34,9 @@ export default function Index() {
       </fetcher.Form>
       {posts?.Items?.map((post) => (
         <div key={post.id}>
-          <h2>{post.title}</h2>
+          <h2>
+            <Link to={`post/${post.id}`}>{post.title}</Link>
+          </h2>
           <img src={post.imageUrl} alt={post.caption} />
           <p>{post.caption}</p>
         </div>
