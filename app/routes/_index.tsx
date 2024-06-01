@@ -32,15 +32,26 @@ export default function Index() {
         </div>
         <button type="submit">Submit</button>
       </fetcher.Form>
-      {posts?.Items?.map((post) => (
-        <div key={post.id}>
-          <h2>
-            <Link to={`post/${post.id}`}>{post.title}</Link>
-          </h2>
-          <img src={post.imageUrl} alt={post.caption} />
-          <p>{post.caption}</p>
-        </div>
-      ))}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: "repeat(3, 1fr)",
+          gridGap: "15px",
+        }}
+      >
+        {posts?.Items?.map((post) => (
+          <div key={post.id}>
+            <Link to={`post/${post.id}`}>
+              <img
+                src={post.imageUrl}
+                alt={post.caption}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
