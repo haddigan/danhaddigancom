@@ -1,10 +1,15 @@
 import { Form } from "@remix-run/react";
-import { json, redirect, type ActionFunctionArgs } from "@remix-run/node";
+import {
+  LoaderFunctionArgs,
+  json,
+  redirect,
+  type ActionFunctionArgs,
+} from "@remix-run/node";
 import { getUploadUrl, uploadToS3 } from "util/s3Utils";
-import { client } from "api/client";
+import { client } from "util/api";
 
-export const loader = async () => {
-  const data = await client.allPosts.query();
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const data = await client(request).allPosts.query();
   const uploadUrl = await getUploadUrl();
 
   return json({ posts: data, uploadUrl });
@@ -33,7 +38,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const uploadUrl = await getUploadUrl();
   const imageUrl = await uploadToS3(uploadUrl, image);
 
-  await client.addPost.mutate({
+  await client(request).addPost.mutate({
     title: formData.get("title") as string,
     caption: formData.get("caption") as string,
     imageUrl,

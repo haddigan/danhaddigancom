@@ -1,6 +1,6 @@
 import { useLoaderData, Form } from "@remix-run/react";
 import { type LoaderFunctionArgs, json } from "@remix-run/node";
-import { client } from "api/client";
+import { client } from "util/api";
 
 export default function Post() {
   const post = useLoaderData<typeof loader>();
@@ -22,9 +22,9 @@ export default function Post() {
   );
 }
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const postId = params.postId;
   if (!postId) throw new Error("No postId provided");
-  const post = await client.postById.query(postId);
+  const post = await client(request).postById.query(postId);
   return json(post.Item);
 };

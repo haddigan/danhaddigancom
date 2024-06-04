@@ -1,8 +1,8 @@
-import { client } from "api/client";
+import { client } from "util/api";
 import { type ActionFunctionArgs, redirect } from "@remix-run/node";
 
-export const action = async ({ params }: ActionFunctionArgs) => {
+export const action = async ({ params, request }: ActionFunctionArgs) => {
   if (!params.postId) throw new Error("No postId provided");
-  await client.deletePost.mutate(params.postId);
+  await client(request).deletePost.mutate(params.postId);
   return redirect("/");
 };

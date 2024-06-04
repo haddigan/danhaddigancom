@@ -1,6 +1,6 @@
-import { json, type MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs, json, type MetaFunction } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
-import { client } from "api/client";
+import { client } from "util/api";
 
 export const meta: MetaFunction = () => {
   return [
@@ -41,8 +41,8 @@ export default function Index() {
   );
 }
 
-export const loader = async () => {
-  const posts = await client.allPosts.query();
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const posts = await client(request).allPosts.query();
 
   return json({ posts });
 };
