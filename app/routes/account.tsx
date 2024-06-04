@@ -1,6 +1,4 @@
-// app/routes/account.tsx
-import type { LoaderFunctionArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { authenticator } from "app/modules/auth/auth.server";
 

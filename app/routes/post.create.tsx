@@ -1,11 +1,11 @@
 import { Form } from "@remix-run/react";
 import {
-  LoaderFunctionArgs,
   json,
   redirect,
+  type LoaderFunctionArgs,
   type ActionFunctionArgs,
 } from "@remix-run/node";
-import { getUploadUrl, uploadToS3 } from "util/s3Utils";
+import { getUploadUrl, uploadToS3 } from "util/file";
 import { client } from "util/api";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

@@ -2,9 +2,8 @@ import { Authenticator } from "remix-auth";
 import { TOTPStrategy } from "remix-auth-totp";
 import { Resource } from "sst";
 import { sessionStorage } from "./session.server";
-import { sendEmail } from "util/emailUtils";
+import { sendEmail } from "util/email";
 import jwt from "jsonwebtoken";
-// import { User as UserEntity } from "db";
 
 interface User {
   email: string;
