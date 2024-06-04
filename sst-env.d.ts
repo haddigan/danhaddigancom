@@ -7,6 +7,10 @@ declare module "sst" {
       sender: string
       type: "sst.aws.Email"
     }
+    EncryptionSecret: {
+      type: "sst.sst.Secret"
+      value: string
+    }
     ImageBucket: {
       name: string
       type: "sst.aws.Bucket"

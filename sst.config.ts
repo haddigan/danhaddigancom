@@ -14,6 +14,11 @@ export default $config({
     };
   },
   async run() {
+    const encryption_secret = new sst.Secret(
+      "EncryptionSecret",
+      "NOT_A_STRONG_SECRET"
+    );
+
     const bucket = new sst.aws.Bucket("ImageBucket", {
       public: true,
     });
@@ -34,14 +39,16 @@ export default $config({
     const trpc = new sst.aws.Function("Trpc", {
       url: true,
       handler: "api/index.handler",
-      link: [table],
+      link: [table, encryption_secret],
     });
 
     const email = new sst.aws.Email("Email", {
       sender: "auth@haddigan.email",
     });
 
-    const site = new sst.aws.Remix("MyWeb", { link: [bucket, trpc, email] });
+    const site = new sst.aws.Remix("MyWeb", {
+      link: [bucket, trpc, email, encryption_secret],
+    });
 
     return {
       api: trpc.url,
