@@ -20,22 +20,38 @@ export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+    <div>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gridTemplateRows: "repeat(3, 1fr)",
-          gridGap: "15px",
+          gap: "15px",
         }}
       >
         {posts?.Items?.map((post) => (
-          <div key={post.id}>
+          <div
+            key={post.id}
+            style={{
+              position: "relative",
+              width: "100%",
+              paddingTop: "100%",
+              overflow: "hidden",
+              background: "#ccc",
+            }}
+          >
             <Link to={`post/${post.id}`}>
               <img
                 src={post.imageUrl}
                 alt={post.caption}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  width: "100%",
+                  height: "100%",
+                  transform: "translate(-50%, -50%)",
+                  objectFit: "cover",
+                }}
               />
             </Link>
           </div>

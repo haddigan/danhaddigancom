@@ -9,7 +9,7 @@ import { getSession, commitSession } from "app/modules/auth/session.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticator.isAuthenticated(request, {
-    successRedirect: "/account",
+    successRedirect: "/",
   });
   const session = await getSession(request.headers.get("Cookie"));
   const authError = session.get(authenticator.sessionErrorKey);
