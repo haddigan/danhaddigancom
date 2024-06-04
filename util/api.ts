@@ -1,5 +1,5 @@
 import { Resource } from "sst";
-import type { Router } from "api/index";
+import type { AppRouter } from "api/router";
 import {
   createTRPCClient,
   httpBatchLink,
@@ -18,7 +18,7 @@ const createClientWithDynamicHeaders = () => {
     return { Authorization: `Bearer ${user?.token}` || "" };
   };
 
-  const client = createTRPCClient<Router>({
+  const client = createTRPCClient<AppRouter>({
     links: [
       httpBatchLink({
         url: Resource.Trpc.url,
