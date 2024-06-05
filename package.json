@@ -27,6 +27,7 @@
     "@aws-sdk/lib-dynamodb": "^3.584.0",
     "@aws-sdk/s3-request-presigner": "^3.583.0",
     "@remix-run/dev": "^2.9.2",
+    "@tailwindcss/typography": "^0.5.13",
     "@trpc/client": "^11.0.0-rc.340",
     "@trpc/server": "^11.0.0-rc.340",
     "@types/aws-lambda": "^8.10.138",
