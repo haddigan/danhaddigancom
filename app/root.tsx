@@ -1,5 +1,4 @@
 import {
-  Link,
   Links,
   Meta,
   Outlet,
@@ -9,7 +8,7 @@ import {
 } from "@remix-run/react";
 import { json, LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import { authenticator } from "~/modules/auth/auth.server";
-import { AdminHeader } from "~/components/admin-header";
+import { Header } from "~/components/header";
 import stylesheet from "~/root.css?url";
 
 export const links: LinksFunction = () => {
@@ -37,21 +36,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const { isAdmin } = useLoaderData<typeof loader>();
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      {isAdmin && <AdminHeader />}
-      <header>
-        <Link
-          to="/"
-          style={{
-            fontSize: "1.25rem",
-            fontWeight: "700",
-            color: "black",
-            textDecoration: "none",
-          }}
-        >
-          Dan Haddigan.com
-        </Link>
-      </header>
+    <div>
+      <Header isAdmin={isAdmin} />
       <main>
         <Outlet />
       </main>

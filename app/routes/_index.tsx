@@ -21,37 +21,17 @@ export default function Index() {
 
   return (
     <div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: ".25rem",
-        }}
-      >
+      <div className="grid grid-cols-3 gap-1 py-2">
         {posts?.Items?.map((post) => (
           <div
             key={post.id}
-            style={{
-              position: "relative",
-              width: "100%",
-              paddingTop: "100%",
-              overflow: "hidden",
-              background: "#ccc",
-            }}
+            className="relative w-full pt-[100%] overflow-hidden bg-gray-300"
           >
             <Link to={`post/${post.id}`}>
               <img
                 src={post.imageUrl}
                 alt={post.caption}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  width: "100%",
-                  height: "100%",
-                  transform: "translate(-50%, -50%)",
-                  objectFit: "cover",
-                }}
+                className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
               />
             </Link>
           </div>
