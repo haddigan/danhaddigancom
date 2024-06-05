@@ -7,13 +7,15 @@ export default function Post() {
   const { isAdmin } = useOutletContext<{ isAdmin: boolean }>();
 
   return (
-    <div className="card card-side shadow-xl bg-slate-300 dark:bg-slate-700 dark:text-slate-100">
-      <figure>
+    <div className="card lg:card-side shadow-xl bg-slate-300 dark:bg-slate-700 dark:text-slate-100 items-start">
+      <figure className="basis-3/4">
         <img src={post.imageUrl} alt={post.caption} />
       </figure>
-      <div className="card-body">
+      <div className="card-body basis-1/4">
         <h1 className="card-title">{post.title}</h1>
-        <p>{post.caption}</p>
+        <p className="overflow-y-auto">
+          <p className="max-h-[60vh]">{post.caption}</p>
+        </p>
         {isAdmin && (
           <div className="card-actions">
             <Form method="post" action="destroy">
