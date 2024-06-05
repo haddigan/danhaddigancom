@@ -7,9 +7,14 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import { json, LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import { authenticator } from "~/modules/auth/auth.server";
 import { AdminHeader } from "~/components/admin-header";
+import stylesheet from "~/root.css?url";
+
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: stylesheet }];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

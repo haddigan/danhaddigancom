@@ -25,7 +25,7 @@ export default function Index() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "15px",
+          gap: ".25rem",
         }}
       >
         {posts?.Items?.map((post) => (
