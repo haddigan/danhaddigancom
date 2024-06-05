@@ -11,8 +11,15 @@ export default function Post() {
       <figure className="basis-3/4">
         <img src={post.imageUrl} alt={post.caption} />
       </figure>
-      <div className="card-body basis-1/4 basis-">
+      <div className="card-body basis-1/4">
         <h1 className="card-title">{post.title}</h1>
+        <small>
+          {new Date(post.created).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </small>
         <p className="overflow-y-auto">
           <p className="lg:max-h-1">{post.caption}</p>
         </p>
