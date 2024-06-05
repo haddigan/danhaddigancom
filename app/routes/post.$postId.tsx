@@ -11,10 +11,10 @@ export default function Post() {
       <figure className="basis-3/4">
         <img src={post.imageUrl} alt={post.caption} />
       </figure>
-      <div className="card-body basis-1/4">
+      <div className="card-body basis-1/4 basis-">
         <h1 className="card-title">{post.title}</h1>
         <p className="overflow-y-auto">
-          <p className="max-h-[60vh]">{post.caption}</p>
+          <p className="lg:max-h-1">{post.caption}</p>
         </p>
         {isAdmin && (
           <div className="card-actions">

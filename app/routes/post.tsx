@@ -5,7 +5,7 @@ import isAdminUtil from "~/util/isAdmin";
 export default function Post() {
   const { isAdmin } = useLoaderData<typeof loader>();
   return (
-    <div className="p-16">
+    <div className="lg:p-16">
       <Outlet context={{ isAdmin }} />
     </div>
   );
