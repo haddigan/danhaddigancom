@@ -29,9 +29,10 @@ authenticator.use(
       },
     },
     async ({ email }) => {
+      // Generate a JWT to authenticate to the tRPC API
+      const token = jwt.sign({ email }, Resource.EncryptionSecret.value);
       // Typically we'd do a lookup in the database and return the user
       // In this instance we have only one user, me :)
-      const token = jwt.sign({ email }, Resource.EncryptionSecret.value);
       return { id: "admin", email, token };
     }
   )

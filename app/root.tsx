@@ -7,7 +7,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { json, LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
-import { authenticator } from "~/modules/auth/auth.server";
+import isAdminUtil from "~/util/isAdmin";
 import { Header } from "~/components/header";
 import stylesheet from "~/root.css?url";
 
@@ -46,7 +46,7 @@ export default function App() {
 }
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const user = await authenticator.isAuthenticated(request);
+  const isAdmin = await isAdminUtil(request);
 
-  return json({ isAdmin: user?.id === "admin" });
+  return json({ isAdmin });
 };
