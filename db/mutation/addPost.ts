@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { humanId } from "human-id";
 import { Post } from "db";
 
 export interface PostUserData {
@@ -7,7 +7,7 @@ export interface PostUserData {
   imageUrl: string;
 }
 export default function addPost({ title, caption, imageUrl }: PostUserData) {
-  const id = nanoid(9);
+  const id = humanId({ separator: "-", capitalize: false });
   const post = {
     PK: `POST#${id}`,
     SK: "METADATA",
