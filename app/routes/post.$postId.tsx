@@ -1,18 +1,29 @@
-import { useLoaderData, Form } from "@remix-run/react";
+import { useLoaderData, Form, useOutletContext } from "@remix-run/react";
 import { type LoaderFunctionArgs, json } from "@remix-run/node";
 import { client } from "util/api";
 
 export default function Post() {
   const post = useLoaderData<typeof loader>();
+  const { isAdmin } = useOutletContext<{ isAdmin: boolean }>();
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <img src={post.imageUrl} alt={post.caption} />
-      <p>{post.caption}</p>
-      <Form method="post" action="destroy">
-        <button type="submit">Delete</button>
-      </Form>
+    <div className="card card-side shadow-xl bg-slate-300 dark:bg-slate-700 dark:text-slate-100">
+      <figure>
+        <img src={post.imageUrl} alt={post.caption} />
+      </figure>
+      <div className="card-body">
+        <h1 className="card-title">{post.title}</h1>
+        <p>{post.caption}</p>
+        {isAdmin && (
+          <div className="card-actions">
+            <Form method="post" action="destroy">
+              <button type="submit" className="btn btn-error">
+                Delete
+              </button>
+            </Form>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

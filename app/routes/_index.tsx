@@ -21,7 +21,7 @@ export default function Index() {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-1 py-2">
+      <div className="grid grid-cols-3 gap-1">
         {posts?.Items?.map((post) => (
           <div
             key={post.id}

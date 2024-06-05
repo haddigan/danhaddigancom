@@ -38,7 +38,7 @@ export default function App() {
   return (
     <div>
       <Header isAdmin={isAdmin} />
-      <main>
+      <main className="p-2">
         <Outlet />
       </main>
     </div>
