@@ -82,16 +82,13 @@ export default function CreatePost() {
             />
           </label>
           <label className="form-control">
-            <span className="label-text">
-              Caption <span className="text-red-500">*</span>
-            </span>
+            <span className="label-text">Caption</span>
             <textarea
               name="caption"
               className="textarea textarea-bordered textarea-lg"
               autoComplete="off"
               autoCapitalize="off"
               autoCorrect="off"
-              required
             />
           </label>
         </div>
