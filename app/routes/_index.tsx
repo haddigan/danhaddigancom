@@ -30,7 +30,7 @@ export default function Index() {
             <Link to={`post/${post.id}`}>
               <img
                 src={post.imageUrl}
-                alt={post.caption}
+                alt={post.title}
                 className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
               />
             </Link>
