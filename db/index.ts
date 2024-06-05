@@ -23,7 +23,7 @@ export const User = new Entity({
     Email: { type: "string", alias: "email" },
     ID: { type: "string", alias: "id" },
   },
-} as const);
+});
 
 export const Post = new Entity({
   name: "Post",
@@ -38,4 +38,14 @@ export const Post = new Entity({
     CreatedAt: { type: "string", alias: "createdAt", hidden: true },
   },
   table: PostsTable,
-} as const);
+});
+
+export interface IPost {
+  id: string;
+  title: string | undefined;
+  caption: string | undefined;
+  imageUrl?: string | undefined;
+  created: string;
+  modified: string;
+  entity: string;
+}

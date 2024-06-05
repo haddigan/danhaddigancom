@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { router, protectedProcedure, publicProcedure } from "./trpc";
-import { allPosts, postById } from "./query";
-import { addPost, deletePost } from "./mutation";
+import { allPosts, postById } from "db/query";
+import { addPost, deletePost } from "db/mutation";
 
 export const appRouter = router({
   // queries
@@ -12,6 +12,7 @@ export const appRouter = router({
   postById: publicProcedure
     .input(z.string())
     .query(async ({ input }) => await postById(input)),
+
   // mutations
   addPost: protectedProcedure
     .input(
