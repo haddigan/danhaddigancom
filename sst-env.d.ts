@@ -19,6 +19,10 @@ declare module "sst" {
       name: string
       type: "sst.aws.Dynamo"
     }
+    SessionSecret: {
+      type: "sst.sst.Secret"
+      value: string
+    }
     Trpc: {
       name: string
       type: "sst.aws.Function"

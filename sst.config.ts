@@ -33,6 +33,11 @@ export default $config({
       "NOT_A_STRONG_SECRET"
     );
 
+    const session_secret = new sst.Secret(
+      "SessionSecret",
+      "NOT_A_STRONG_SECRET"
+    );
+
     const bucket = new sst.aws.Bucket("ImageBucket", {
       public: true,
     });
@@ -57,14 +62,14 @@ export default $config({
     });
 
     const email = new sst.aws.Email("Email", {
-      sender:
-        process.env.AWS_PROFILE === "orb-prod"
-          ? "auth@haddigan.email"
-          : "code@haddigan.email",
+      sender: "auth@haddigan.email",
     });
 
     const site = new sst.aws.Remix("MyWeb", {
-      link: [bucket, trpc, email, encryption_secret],
+      link: [bucket, trpc, email, encryption_secret, session_secret],
+      environment: {
+        ADMIN_EMAIL: "auth@haddigan.email",
+      },
     });
 
     return {
