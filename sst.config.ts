@@ -1,5 +1,19 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
+const getAwsProfile = (stage: string) => {
+  switch (stage) {
+    case "production":
+      return "orb-prod";
+    case "":
+    case "dev":
+    case "dan":
+    case "local":
+    case "orb-dev":
+    default:
+      return "orb-dev";
+  }
+};
+
 export default $config({
   app(input) {
     return {
@@ -8,7 +22,7 @@ export default $config({
       home: "aws",
       providers: {
         aws: {
-          profile: "orb-dev",
+          profile: getAwsProfile(input?.stage),
         },
       },
     };
@@ -43,7 +57,10 @@ export default $config({
     });
 
     const email = new sst.aws.Email("Email", {
-      sender: "auth@haddigan.email",
+      sender:
+        process.env.AWS_PROFILE === "orb-prod"
+          ? "auth@haddigan.email"
+          : "code@haddigan.email",
     });
 
     const site = new sst.aws.Remix("MyWeb", {
